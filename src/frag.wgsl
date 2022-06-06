@@ -5,16 +5,13 @@ struct UniformBufferObject {
 @group(0) @binding(0) var<uniform> ubo : UniformBufferObject;
 
 @stage(fragment) fn main(
-    @location(0) uv : vec2<f32>
+    @location(0) col : vec4<f32>,
+    @location(1) uv : vec2<f32>
 ) -> @location(0) vec4<f32> {
-    let aspect = ubo.resolution.xy / ubo.resolution.y;
-    let translated_uv = (uv - vec2<f32>(0.5,0.5)) * 2.0 * aspect;
-    let freq:f32 = 5.0;
-    let speed: f32 = 5.0;
-    let h = (sin(freq * length(translated_uv) + speed * ubo.time) + 1.0) / 2.0;
+    //let aspect = ubo.resolution.xy / ubo.resolution.y;
+    //let translated_uv = (uv - vec2<f32>(0.5,0.5)) * 2.0 * aspect;
 
-    let h_off = 20.0;
-    return vec4<f32>(hsl_to_rgb(h * (360.0 - h_off * 2.0) + h_off ,0.7,0.5),1.0);
+    return col;
 }
 
 // 0 ≤ H < 360, 0 ≤ S ≤ 1 and 0 ≤ L ≤ 1

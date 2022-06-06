@@ -7,14 +7,15 @@ const App = @This();
 
 const Vertex = struct {
     pos: @Vector(4, f32),
+    col: @Vector(4, f32),
     uv: @Vector(2, f32),
 };
 
 const vertices = [_]Vertex{
-    .{ .pos = .{ -1, -1, 0, 1 }, .uv = .{ 0, 0 } },
-    .{ .pos = .{ 1, -1, 0, 1 }, .uv = .{ 1, 0 } },
-    .{ .pos = .{ 1, 1, 0, 1 }, .uv = .{ 1, 1 } },
-    .{ .pos = .{ -1, 1, 0, 1 }, .uv = .{ 0, 1 } },
+    .{ .pos = .{ -1, -1, 0, 1 }, .col = .{ 0, 0, 0, 1}, .uv = .{ 0, 0 } },
+    .{ .pos = .{ 1, -1, 0, 1 }, .col = .{ 1, 0, 0, 1}, .uv = .{ 1, 0 } },
+    .{ .pos = .{ 1, 1, 0, 1 }, .col = .{ 0, 1, 0, 1}, .uv = .{ 1, 1 } },
+    .{ .pos = .{ -1, 1, 0, 1 }, .col = .{ 0, 0, 1, 1}, .uv = .{ 0, 1 } },
 };
 const indices = [_]u16{ 0, 1, 2, 2, 3, 0 };
 
@@ -201,7 +202,8 @@ fn recreatePipeline(engine: *mach.Engine, fragment_shader_code: [:0]const u8, bg
     defer vs_module.release();
     const vertex_attributes = [_]gpu.VertexAttribute{
         .{ .format = .float32x4, .offset = @offsetOf(Vertex, "pos"), .shader_location = 0 },
-        .{ .format = .float32x2, .offset = @offsetOf(Vertex, "uv"), .shader_location = 1 },
+        .{ .format = .float32x4, .offset = @offsetOf(Vertex, "col"), .shader_location = 1 },
+        .{ .format = .float32x2, .offset = @offsetOf(Vertex, "uv"), .shader_location = 2 },
     };
     const vertex_buffer_layout = gpu.VertexBufferLayout{
         .array_stride = @sizeOf(Vertex),
