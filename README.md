@@ -1,6 +1,7 @@
 # 2D Vector Editor written in Zig with Hexops Mach Engine in the future.
 
-Right now this is an executable for testing wgsl shaders on the fly.
+Right now this shows an colored Window.
+
 Build it and run it with:
 `zig build run`
 
