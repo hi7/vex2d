@@ -130,7 +130,7 @@ pub fn update(app: *App, engine: *mach.Engine) !bool {
     while (engine.pollEvent()) |event| {
         switch (event) {
             .key_press => |ev| {
-                if (ev.key == .space)
+                if (ev.key == .escape)
                     engine.setShouldClose(true);
             },
             else => {},
