@@ -2,6 +2,9 @@
 
 Right now this shows an colored Window.
 
+Load submoludes:
+`git submodule update --init --recursive`
+
 Build it and run it with:
 `zig build run`
 
